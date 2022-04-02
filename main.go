@@ -13,7 +13,14 @@ import (
 	"math/big"
 )
 
-const BscTestNet = "ddd"
+const (
+	BscTestNet  = "https://data-seed-prebsc-2-s2.binace.org:8545/"
+	ContractAdd = ""
+)
+
+var PrivateKey1 *ecdsa.PrivateKey
+var FromAddr common.Address
+var ToAddr common.Address
 
 func callContractWithAbi(client *ethclient.Client, privKey *ecdsa.PrivateKey, from, to common.Address, contract string) (string, error) {
 	//create tx
@@ -75,4 +82,14 @@ func callContractWithAbi(client *ethclient.Client, privKey *ecdsa.PrivateKey, fr
 
 func main() {
 	client, err := ethclient.Dial(BscTestNet)
+	if err != nil {
+		fmt.Println("eth client: ", err)
+		return
+	}
+	txhash, err := callContractWithAbi(client, PrivateKey1, FromAddr, ToAddr, ContractAdd)
+	if err != nil {
+		fmt.Println("call contract: ", err)
+		return
+	}
+	fmt.Println(txhash)
 }
