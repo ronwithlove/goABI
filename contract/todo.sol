@@ -1,6 +1,7 @@
 pragma solidity >=0.7.0 <0.9.0;
 
 contract Todo {
+    address public owner;
     Task[] tasks;
 
     struct Task {
@@ -8,25 +9,35 @@ contract Todo {
         bool status;
     }
 
-    constructor() {}
+    constructor() {
+        owner = msg.sender;
+    }
 
-    function add(string memory _content) public {
+    modifier isOwnwer() {
+        require(owner == msg.sender);
+        _; //执行方法内的逻辑
+    }
+
+    function add(string memory _content) public isOwnwer {
         tasks.push(Task(_content, false));
     }
 
-    function get(uint256 _id) public view returns (Task memory) {
+    function get(uint256 _id) public view isOwnwer returns (Task memory) {
         return tasks[_id];
     }
 
-    function list() public view returns (Task[] memory) {
+    function list() public view isOwnwer returns (Task[] memory) {
         return tasks;
     }
 
-    function update(uint256 _id, string memory _content) public {
+    function update(uint256 _id, string memory _content) public isOwnwer {
         tasks[_id].content = _content;
     }
 
-    function remove(uint256 _id) public {
-        delete tasks[_id];
+    function remove(uint256 _id) public isOwnwer {
+        for (uint256 i = _id; i < tasks.length - 1; i++) {
+            tasks[i] = tasks[i + 1];
+        }
+        tasks.pop();
     }
 }
