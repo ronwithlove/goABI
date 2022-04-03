@@ -34,6 +34,10 @@ contract Todo {
         tasks[_id].content = _content;
     }
 
+    function toggle(uint256 _id) public isOwnwer {
+        tasks[_id].status = !tasks[_id].status;
+    }
+
     function remove(uint256 _id) public isOwnwer {
         for (uint256 i = _id; i < tasks.length - 1; i++) {
             tasks[i] = tasks[i + 1];
