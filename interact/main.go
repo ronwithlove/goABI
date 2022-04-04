@@ -60,10 +60,40 @@ func main() {
 		fmt.Println("new todo err: ", err)
 	}
 
-	tx, err := t.Add(auth, "first task")
-	if err != nil {
-		fmt.Println("add err: ", err)
-	}
-	fmt.Println(tx.Hash())
+	//add task
+	//tx, err := t.Add(auth, "first task")
+	//if err != nil {
+	//	fmt.Println("add err: ", err)
+	//}
+	//fmt.Println(tx.Hash())
 
+	//check add list
+	//tasks, err := t.List(&bind.CallOpts{
+	//	From: walletAddr1,
+	//})
+	//if err != nil {
+	//	fmt.Println("list err: ", err)
+	//}
+	//fmt.Println(tasks)
+
+	//update the task which id=0
+	//tra, err := t.Update(auth, big.NewInt(0), "update task content")
+	//if err != nil {
+	//	fmt.Println("list err: ", err)
+	//}
+	//fmt.Println("update", tra.Hash())
+
+	//toggle status
+	//tra, err := t.Toggle(auth, big.NewInt(0))
+	//if err != nil {
+	//	fmt.Println("toggle err: ", err)
+	//}
+	//fmt.Println("Toggle tx", tra.Hash())
+
+	//remove task
+	tra, err := t.Remove(auth, big.NewInt(0))
+	if err != nil {
+		fmt.Println("remove task err: ", err)
+	}
+	fmt.Println("Remove task tx", tra.Hash())
 }
