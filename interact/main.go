@@ -13,9 +13,9 @@ import (
 )
 
 const (
-	infuraRopstenTestNet = "https://ropsten.infura.io/v3/48284b00f92245f098e949dede474365"
-	privateKey           = "私钥"
-	contractAddr         = "0x1bab3A5577150E2beb6DBaF44edE5Fa8AA8489E5"
+	infuraRopstenTestNet = "https://api.s0.b.hmny.io"
+	privateKey           = "25d00fb5bdd850498a3a654423d5e5b0d940d5d3849e32187671679950a68f12"
+	contractAddr         = "0x6004434E7b00B0b13426e50ED81a4B2f8cfF22B9"
 )
 
 func main() {
@@ -61,11 +61,11 @@ func main() {
 	}
 
 	//add task
-	//tx, err := t.Add(auth, "first task")
-	//if err != nil {
-	//	fmt.Println("add err: ", err)
-	//}
-	//fmt.Println(tx.Hash())
+	tx, err := t.Add(auth, "second task")
+	if err != nil {
+		fmt.Println("add err: ", err)
+	}
+	fmt.Println("tx hash :", tx.Hash())
 
 	//check add list
 	//tasks, err := t.List(&bind.CallOpts{
@@ -91,9 +91,9 @@ func main() {
 	//fmt.Println("Toggle tx", tra.Hash())
 
 	//remove task
-	tra, err := t.Remove(auth, big.NewInt(0))
-	if err != nil {
-		fmt.Println("remove task err: ", err)
-	}
-	fmt.Println("Remove task tx", tra.Hash())
+	//tra, err := t.Remove(auth, big.NewInt(0))
+	//if err != nil {
+	//	fmt.Println("remove task err: ", err)
+	//}
+	//fmt.Println("Remove task tx", tra.Hash())
 }

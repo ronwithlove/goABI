@@ -12,8 +12,8 @@ import (
 )
 
 const (
-	infuraRopstenTestNet = "https://ropsten.infura.io/v3/48284b00f92245f098e949dede474365"
-	privateKey           = "私钥"
+	infuraRopstenTestNet = "https://api.s0.b.hmny.io"
+	privateKey           = "25d00fb5bdd850498a3a654423d5e5b0d940d5d3849e32187671679950a68f12"
 )
 
 func main() {
